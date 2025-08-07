@@ -1,39 +1,57 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Capital Gains Tax Calculator</title>
+  <title>מחשבון מס על רווחי הון</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Capital Gains Tax Calculator</h1>
+    <h1>מחשבון מס על רווחי הון</h1>
     <form id="tax-form">
-      <label for="buyPrice">Buy Price</label>
-      <input type="number" id="buyPrice" placeholder="Enter buy price" required />
+      <label for="assetType">סוג נכס</label>
+      <select id="assetType">
+        <option value="מניה">מניה</option>
+        <option value="קריפטו">קריפטו</option>
+        <option value="ETF">ETF</option>
+        <option value="אחר">אחר</option>
+      </select>
 
-      <label for="sellPrice">Sell Price</label>
-      <input type="number" id="sellPrice" placeholder="Enter sell price" required />
+      <label for="positionType">סוג עסקה</label>
+      <select id="positionType">
+        <option value="לונג">לונג</option>
+        <option value="שורט">שורט</option>
+      </select>
 
-      <label for="quantity">Quantity</label>
-      <input type="number" id="quantity" placeholder="Enter quantity" required />
+      <label for="buyPrice">מחיר קנייה</label>
+      <input type="number" id="buyPrice" placeholder="₪" required />
 
-      <label for="buyDate">Purchase Date</label>
+      <label for="sellPrice">מחיר מכירה</label>
+      <input type="number" id="sellPrice" placeholder="₪" required />
+
+      <label for="quantity">כמות</label>
+      <input type="number" id="quantity" placeholder="מספר יחידות" required />
+
+      <label for="fee">סה"כ עמלה</label>
+      <input type="number" id="fee" placeholder="₪" value="0" required />
+
+      <label for="buyDate">תאריך קנייה</label>
       <input type="date" id="buyDate" required />
 
-      <label for="sellDate">Sale Date</label>
+      <label for="sellDate">תאריך מכירה</label>
       <input type="date" id="sellDate" required />
 
-      <button type="submit">Calculate Tax</button>
+      <button type="submit">חשב</button>
     </form>
 
     <div class="results" id="results" style="display:none">
-      <div><span>Profit / Loss:</span><span id="profit"></span></div>
-      <div><span>Estimated Tax:</span><span id="tax"></span></div>
-      <div><span>Net Earnings:</span><span id="net"></span></div>
+      <div><span>רווח / הפסד:</span><span id="profit"></span></div>
+      <div><span>מס צפוי:</span><span id="tax"></span></div>
+      <div><span>רווח נקי:</span><span id="net"></span></div>
+      <textarea id="summary" rows="3" readonly></textarea>
+      <button onclick="copySummary()">📋 העתק שורת תיעוד</button>
     </div>
   </div>
   <script src="script.js"></script>
